@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin/users', 'Panel\UserController@showAll')->name('panel_user_show');
+Route::get('/admin/users/{id}', 'Panel\UserController@show')->name('panel_user_single_show');
+Route::put('/admin/users/edit', 'Panel\UserController@edit')->name('panel_user_edit');
+Route::put('/admin/users/delete', 'Panel\UserController@delete')->name('panel_user_delete');
+Route::put('/admin/users/restore', 'Panel\UserController@restore')->name('panel_user_restore');

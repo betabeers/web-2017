@@ -1,0 +1,28 @@
+#header.header {
+  background: {
+    color: $color-primary;
+  }
+  color: $color-white;
+  .header {
+    &-brand {
+      font: {
+        family: "Arial", "Helvetica", sans-serif;
+      }
+      &-title {
+        @extend .h1;
+        display: inline-block;
+        font:{
+          size: 1.5rem;
+          weight: $font-weight-normal;
+        }
+        margin: {
+          bottom: .67rem;
+          top: .67rem;
+        }
+      }
+      &-notice {
+        opacity: .8;
+      }
+    }
+  }
+}
