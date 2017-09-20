@@ -2,7 +2,10 @@
 
 @section('content')
     <div class="row">
-        <div class="col-12 text-right">
+        <div class="col-6">
+            @include('panel.user.search')
+        </div>
+        <div class="col-6 text-right">
             <a href="#" class="btn btn-success">Crear nuevo</a>
         </div>
     </div>
