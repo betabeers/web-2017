@@ -10,8 +10,9 @@
                        @keydown.down="moveDown"
                        @keydown.up="moveUp"
                 >
-                <div id="panel-user-search_spinner" class="input-group-addon d-none">
-                    <i class="fa fa-spin fa-circle-o-notch"></i>
+                <div id="panel-user-search_addon" class="input-group-addon">
+                    <i class="fa fa-spin fa-circle-o-notch" v-if="searching"></i>
+                    <i class="fa fa-search" v-else></i>
                 </div>
             </div>
         </div>
@@ -36,6 +37,7 @@
                 query: '',
                 results: [],
                 selected: 0,
+                searching: false,
             }
         },
         methods: {
@@ -45,7 +47,7 @@
             },
             autocomplete() {
                 this.empty();
-                document.getElementById('panel-user-search_spinner').classList.remove('d-none');
+                this.searching = true;
                 if(this.query.length > 2){
                     axios.get('/admin/users/search', {
                         params:{
@@ -53,19 +55,27 @@
                         }
                     }).then(response => {
                         this.results = response.data;
-                        document.getElementById('panel-user-search_spinner').classList.add('d-none');
+                        this.searching = false;
                     })
                 }else{
-                    document.getElementById('panel-user-search_spinner').classList.add('d-none');
+                    this.searching = false
                 }
             },
             moveUp() {
                 if(this.selected === 0) return;
                 this.selected--;
+                if(this.selected > 8){
+                    console.log(this.selected * 34);
+                    document.getElementById('panel-user-search_results').scrollTop = 34 + ((this.selected - 8) * 34);
+                }
             },
             moveDown() {
                 if(this.selected === (this.results.length -1)) return;
                 this.selected++;
+                if(this.selected > 8){
+                    console.log(this.selected * 34);
+                    document.getElementById('panel-user-search_results').scrollTop = 34 + ((this.selected - 8) * 34);
+                }
             },
             selectOnHover(index) {
                 this.selected = index;

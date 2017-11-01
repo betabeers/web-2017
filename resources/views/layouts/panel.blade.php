@@ -36,6 +36,9 @@
 
         </footer>
     </div>
+    <script>
+        var CKEDITOR_BASEPATH = '/libraries/ckeditor/';
+    </script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

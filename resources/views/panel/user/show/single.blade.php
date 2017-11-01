@@ -57,7 +57,7 @@
                                         </option>
                                     </select>
                                 @elseif($user['casts'][$key] == 'date')
-                                    <input id="{{$key}}" class="form-control" type="datetime-local"  name="user[{{$key}}]" value="{{$value}}">
+                                    <input id="{{$key}}" class="form-control" type="datetime-local"  name="user[{{$key}}]" value="{{date('Y-m-d\Th:i', strtotime($value))}}">
                                 @elseif($user['casts'][$key] == 'integer')
                                     <input id="{{$key}}" class="form-control" type="number" min="0" name="user[{{$key}}]" value="{{$value}}">
                                 @endif
